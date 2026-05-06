@@ -1,0 +1,7 @@
+/consultations
+*/.ipynb_checkpoints/*
+/rubrics
+/notes
+.DS_Store
+*.ics
+data/**.csv
