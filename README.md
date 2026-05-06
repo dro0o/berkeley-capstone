@@ -216,7 +216,7 @@ Together, these models provide a spectrum from interpretable baseline to high pe
 
 ### Modeling Assessment
 
-#### Primary Decision Metric
+#### Primary Evaluation Metric
 
 Due to the extreme class imbalance in wildfire occurrence, precision–recall AUC (PR-AUC) was selected as the primary evaluation metric. While recall measures the proportion of true fire events detected, it does not account for the rate of false positives and can be trivially maximized by predicting all observations as fires. PR-AUC instead evaluates model performance across the full range of decision thresholds, capturing the trade off between precision and recall. This provides a more informative assessment of model utility in imbalanced settings, where both detecting rare fire events and limiting false alarms are critical.
 
