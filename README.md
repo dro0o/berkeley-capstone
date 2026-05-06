@@ -8,6 +8,17 @@ Can wildfire risk in California be accurately predicted at a spatial grid cell l
 
 The model operates under significant class imbalance and shows modest PR-AUC, precision, and recall, indicating limited ability to fully separate fire from no fire events in absolute terms. However, all models perform substantially above baseline prevalence, demonstrating meaningful predictive signal beyond class imbalance. The results reveal strong and interpretable structure in the data, most notably a dominant temporal persistence effect through last month fire occurrence, alongside meaningful contributions from seasonality, vegetation state, human activity, and spatial location. Meteorological variables contribute comparatively little additional signal once these factors are included. The model also captures a clear seasonal pattern, with moderate elevation in spring and a pronounced peak in late year, consistent with known wildfire dynamics. Overall, despite constrained predictive performance, the results indicate that wildfire risk is primarily governed by persistent temporal and spatial structure, which the model is able to learn in a coherent and physically interpretable way.
 
+## Problem Statement Adjustmenst
+
+While largely focusing on the same research question and data as stated in the problem statement, a few updates were made in the course of completing the analysis from what was [outlined](ProblemStatement.md).
+
+- Analysis focuses on classification, not linear regression, as a modeling mechanism. The data is structured such that further work could be completed utilizing linear regression in follow on analysis.
+- Interactive spatial risk maps can be created from the modeling output, but have not yet been generated
+
+## Analysis Notebook
+
+Please reference accompanying [analysis workbook](/notebooks/analysis.ipynb) when reviewing this report.
+
 ## Data
 
 ### Sources
@@ -282,3 +293,15 @@ The results indicate a clear seasonal structure in predicted fire risk, with mod
 ## Findings Summary
 
 Overall, the modeling results indicate that wildfire occurrence exhibits a measurable but limited level of predictability under strong class imbalance, with performance highest in the spatial split and consistently constrained in the spatiotemporal regime. While PR-AUC, precision, and recall remain modest in absolute terms, all models demonstrate clear predictive signal above baseline prevalence. Feature importance and seasonal analysis reveal that wildfire risk is primarily driven by short-term temporal persistence (fire_last_month_binary), reinforced by secondary contributions from seasonality, vegetation conditions, human activity proxies, and spatial location. Meteorological variables contribute comparatively less signal once these dominant factors are accounted for. Collectively, the results suggest that wildfire risk is governed more strongly by persistent temporal and spatial structure than by short term atmospheric variability alone.
+
+## Recommendations
+
+Further data development is necessary to strengthen wildfire risk modeling and improve confidence in operational use. While the current dataset establishes a strong foundation, additional feature refinement and increased resolution are needed to enhance predictive signal and support decision making for resource deployment.
+
+Increasing spatial resolution from ~5 km grid cells to finer scales (e.g., 1–2 km) would reduce the loss of localized variability introduced through spatial averaging. The current aggregation process, while necessary for consistency and processing time, likely smooths critical signals associated with ignition and spread, particularly in heterogeneous terrain and vegetation zones.
+
+Similarly, reducing temporal aggregation from monthly to weekly intervals would improve the model’s ability to capture short term dynamics in fire risk. Wildfire conditions can change rapidly due to weather and fuel conditions, and finer temporal resolution would better align the model with these shifts.
+
+Expanding human activity features would further improve predictive performance. More granular indicators such as road density, proximity to campsites, and trail networks would provide a more direct representation of ignition risk than population density and nighttime lights alone, which serve as broader proxies.
+
+Finally, future modeling efforts should evaluate the dependence on short term temporal persistence features such as prior fire occurrence. While highly predictive, reliance on these features may limit generalization in scenarios where recent fire history is unavailable or less informative, and complementary predictors may be needed to improve robustness.
